@@ -1,4 +1,7 @@
-static class LayerMask
+namespace Utils
 {
-    public readonly static int PADDLE = 9;
+    static class LayerMask
+    {
+        public readonly static int PADDLE = 9;
+    }
 }

@@ -1,41 +1,68 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(ColorChange))]
 public class Ball : MonoBehaviour
 {
-    public ActiveColorChangeable activeColorChangeable;
+    public ActivePaddle activePaddle;
     private Rigidbody2D _rigidBody;
+    private ColorChange _colorChange;
 
-    void Awake()
+    private void Awake()
     {
-        _rigidBody = GetComponent<Rigidbody2D>();
-        if (_rigidBody == null)
-        {
-            Debug.Log("RigidBody2D component not found on this gameobject");
-        }
+        InjectDependencies();
     }
 
-    void Start()
+    private void Start()
     {
-        _rigidBody.AddForce(Vector2.right * 200f);
+        _rigidBody.AddForce(Vector2.right * 300f);
+        _colorChange.ChangeColor();
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    #region Private methods
+    private void OnCollisionExit2D(Collision2D collision)
     {
         Debug.Log("OnCollisionExit2D : " + _rigidBody.velocity.normalized);
         Vector3 outsideOfBall = new Vector3(_rigidBody.velocity.normalized.x * gameObject.transform.localScale.x, 0, 0);
         Debug.DrawRay(gameObject.transform.position, _rigidBody.velocity.normalized * 100, Color.red);
 
-        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position + outsideOfBall, _rigidBody.velocity.normalized * 100f);
-        if (hit.collider != null)
+        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position + outsideOfBall,
+            _rigidBody.velocity.normalized * 100f);
+
+        // Guard
+        if (hit.collider == null)
         {
-            ColorChangeable colorChangeable = hit.collider.gameObject.GetComponent<ColorChangeable>();
-            if (colorChangeable != null)
-            {
-                activeColorChangeable.active = colorChangeable;
-                Debug.Log("activeColorChangeable.active : " + activeColorChangeable.active);
-            }
+            return;
+        }
+
+        Paddle paddle = hit.collider.gameObject.GetComponent<Paddle>();
+
+        // Guard
+        if (paddle == null)
+        {
+            return;
+        }
+
+        activePaddle.active = paddle;
+        Debug.Log("activePaddle.active : " + activePaddle.active);
+    }
+    #endregion
+
+    #region Dipendancy Injection
+    
+    private void InjectDependencies()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+        if (_rigidBody == null)
+        {
+            Debug.LogError("RigidBody2D component not found on this game object");
+        }
+
+        _colorChange = GetComponent<ColorChange>();
+        if (_colorChange == null)
+        {
+            Debug.LogError("ColorChange component not available");
         }
     }
+    
+    #endregion
 }
