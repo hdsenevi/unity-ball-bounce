@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Shanaka.BallBounce.Data;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DebugUIHelper : MonoBehaviour

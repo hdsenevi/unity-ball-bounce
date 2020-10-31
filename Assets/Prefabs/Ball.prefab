@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activePaddle: {fileID: 11400000, guid: daf25ac82b8654d5e911c0ef06be9b95, type: 2}
+  ballGameColor: {fileID: 11400000, guid: d72cbb4249e3d4ad0b4e4395201c18a2, type: 2}
+  ballStats: {fileID: 11400000, guid: 4408bdc4d9a43415ea018b455b7c982f, type: 2}
 --- !u!114 &-3780442516054412243
 MonoBehaviour:
   m_ObjectHideFlags: 0

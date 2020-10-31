@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using Shanaka.BallBounce.Data;
+using UnityEngine;
 
 [RequireComponent(typeof(ColorChange))]
 public class Ball : MonoBehaviour
 {
     public ActivePaddle activePaddle;
+    public GameColor ballGameColor;
+    public BallStats ballStats;
     private Rigidbody2D _rigidBody;
     private ColorChange _colorChange;
 
@@ -15,18 +18,21 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         _rigidBody.AddForce(Vector2.right * 300f);
-        _colorChange.ChangeColor();
     }
 
     #region Private methods
+    private void ChangeColor()
+    {
+        ballGameColor.color = _colorChange.ChangeColor();
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("OnCollisionExit2D : " + _rigidBody.velocity.normalized);
         Vector3 outsideOfBall = new Vector3(_rigidBody.velocity.normalized.x * gameObject.transform.localScale.x, 0, 0);
         Debug.DrawRay(gameObject.transform.position, _rigidBody.velocity.normalized * 100, Color.red);
 
         RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position + outsideOfBall,
-            _rigidBody.velocity.normalized * 100f);
+            _rigidBody.velocity.normalized * ballStats.initialForceMultiple);
 
         // Guard
         if (hit.collider == null)
@@ -43,14 +49,36 @@ public class Ball : MonoBehaviour
         }
 
         activePaddle.active = paddle;
-        Debug.Log("activePaddle.active : " + activePaddle.active);
+        ChangeColor();
+        ChangeSpeed();
     }
+
+    private void ChangeSpeed()
+    {
+        _rigidBody.AddForce(_rigidBody.velocity.normalized * ballStats.increaseForceMultiple);
+    }
+
     #endregion
 
     #region Dipendancy Injection
     
     private void InjectDependencies()
     {
+        if (activePaddle == null)
+        {
+            Debug.LogError("activePaddle asset not found");
+        }
+        
+        if (ballGameColor == null)
+        {
+            Debug.LogError("ballGameColor asset not found");
+        }
+        
+        if (ballStats == null)
+        {
+            Debug.LogError("ballStats asset not found");
+        }
+        
         _rigidBody = GetComponent<Rigidbody2D>();
         if (_rigidBody == null)
         {

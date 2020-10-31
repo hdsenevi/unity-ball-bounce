@@ -11,8 +11,17 @@ public class ColorChange : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void ChangeColor()
+    public Color ChangeColor()
     {
-        _spriteRenderer.color = GameColor.GetRandomColor();
+        Color col = GameColor.GetRandomColor();
+        _spriteRenderer.color = col;
+        return col;
+    }
+
+    public Color ToggleColor(Color currentColor)
+    {
+        Color col = GameColor.GetNextColor(currentColor);
+        _spriteRenderer.color = col;
+        return col;
     }
 }

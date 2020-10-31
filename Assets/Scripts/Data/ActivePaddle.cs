@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Active Paddle", menuName = "Scriptable Objects/Active Paddle", order = 1)]
-public class ActivePaddle : ScriptableObject
+namespace Shanaka.BallBounce.Data
 {
-    public Paddle active;
+    [CreateAssetMenu(fileName = "Active Paddle", menuName = "Scriptable Objects/Active Paddle", order = 2)]
+    public class ActivePaddle : ScriptableObject
+    {
+        public Paddle active;
+    }
 }
