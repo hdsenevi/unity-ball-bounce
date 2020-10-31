@@ -32,3 +32,5 @@ sysinfo.txt
 Assets/EditorUtilities
 Assets/EditorUtilities.meta
 .DS_Store
+.idea/
+.vscode/
