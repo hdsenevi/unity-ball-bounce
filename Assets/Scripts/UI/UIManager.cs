@@ -2,17 +2,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DebugUIHelper : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public Text text;
+    public Text scoreText;
     public ActivePaddle activePaddle;
-
+    public ScoreData score;
+    
     private void Update()
     {
         // ReSharper disable once Unity.PerformanceCriticalCodeNullComparison
         if (activePaddle.active != null)
         {
-            text.text = activePaddle.active.name;
+            scoreText.text = score.ScoreValue + " POINTS";
         }
     }
 }

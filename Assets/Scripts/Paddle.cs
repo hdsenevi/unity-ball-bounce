@@ -26,4 +26,9 @@ public class Paddle : MonoBehaviour
     {
         _currentColor = _colorChange.ToggleColor(_currentColor);
     }
+
+    public Color GetCurrentColor()
+    {
+        return _currentColor;
+    }
 }

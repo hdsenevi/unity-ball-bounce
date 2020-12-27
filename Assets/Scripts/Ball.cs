@@ -1,4 +1,5 @@
-﻿using Shanaka.BallBounce.Data;
+﻿using System;
+using Shanaka.BallBounce.Data;
 using UnityEngine;
 
 [RequireComponent(typeof(ColorChange))]
@@ -26,11 +27,25 @@ public class Ball : MonoBehaviour
         ballGameColor.color = _colorChange.ChangeColor();
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D otherCollision)
+    {
+        Paddle paddle = otherCollision.gameObject.GetComponent<Paddle>();
+        
+        // Guard
+        if (paddle == null)
+        {
+            return;
+        }
+        
+        if (ballGameColor.color != paddle.GetCurrentColor())
+        {
+            Debug.Log("you lose!!");
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D otherCollision)
     {
         Vector3 outsideOfBall = new Vector3(_rigidBody.velocity.normalized.x * gameObject.transform.localScale.x, 0, 0);
-        Debug.DrawRay(gameObject.transform.position, _rigidBody.velocity.normalized * 100, Color.red);
-
         RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position + outsideOfBall,
             _rigidBody.velocity.normalized * ballStats.initialForceMultiple);
 
