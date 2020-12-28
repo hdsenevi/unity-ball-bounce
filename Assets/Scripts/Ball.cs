@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     public BallStats ballStats;
     private Rigidbody2D _rigidBody;
     private ColorChange _colorChange;
+    private GameManager _gameManager;
 
     private void Awake()
     {
@@ -18,7 +19,8 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        _rigidBody.AddForce(Vector2.right * 300f);
+        // TODO / REFACTOR : Refactor this to a separate function later
+        _rigidBody.AddForce(Vector2.right * BallStats.initialForce);
     }
 
     #region Private methods
@@ -36,10 +38,18 @@ public class Ball : MonoBehaviour
         {
             return;
         }
-        
-        if (ballGameColor.color != paddle.GetCurrentColor())
+
+        if (ballGameColor.color == paddle.GetCurrentColor())
         {
-            Debug.Log("you lose!!");
+            _gameManager.scoreManager.IncreaseScore();
+        } else 
+        {
+            _gameManager.scoreManager.ResetScore();
+            
+            // TODO / REFACTOR : Refactor this to a separate function later
+            Vector2 movingDirection = _rigidBody.velocity.normalized;
+            _rigidBody.velocity = Vector2.zero;
+            _rigidBody.AddForce(movingDirection * BallStats.initialForce);
         }
     }
 
@@ -47,7 +57,7 @@ public class Ball : MonoBehaviour
     {
         Vector3 outsideOfBall = new Vector3(_rigidBody.velocity.normalized.x * gameObject.transform.localScale.x, 0, 0);
         RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position + outsideOfBall,
-            _rigidBody.velocity.normalized * ballStats.initialForceMultiple);
+            _rigidBody.velocity.normalized * BallStats.initialForceMultiple);
 
         // Guard
         if (hit.collider == null)
@@ -70,7 +80,7 @@ public class Ball : MonoBehaviour
 
     private void ChangeSpeed()
     {
-        _rigidBody.AddForce(_rigidBody.velocity.normalized * ballStats.increaseForceMultiple);
+        _rigidBody.AddForce(_rigidBody.velocity.normalized * BallStats.increaseForceMultiple);
     }
 
     #endregion
@@ -92,6 +102,12 @@ public class Ball : MonoBehaviour
         if (ballStats == null)
         {
             Debug.LogError("ballStats asset not found");
+        }
+
+        _gameManager = GameObject.FindWithTag("Managers").GetComponent<GameManager>();
+        if (_gameManager == null)
+        {
+            Debug.LogError("GameManager component not found on a game object with tag 'Managers'");
         }
         
         _rigidBody = GetComponent<Rigidbody2D>();

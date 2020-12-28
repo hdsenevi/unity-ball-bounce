@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 69714804}
   m_Layer: 0
   m_Name: _Managers
-  m_TagString: Untagged
+  m_TagString: Managers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dccd3446cf77d48188d4f66e611c9a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreData: {fileID: 11400000, guid: 1e10f14272cac418f94385b7f76bfedd, type: 2}
 --- !u!114 &69714804
 MonoBehaviour:
   m_ObjectHideFlags: 0
