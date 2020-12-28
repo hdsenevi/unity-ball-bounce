@@ -50,6 +50,9 @@ public class Ball : MonoBehaviour
             Vector2 movingDirection = _rigidBody.velocity.normalized;
             _rigidBody.velocity = Vector2.zero;
             _rigidBody.AddForce(movingDirection * BallStats.initialForce);
+            
+            // TODO : maybe not the best thing to do atm
+            _gameManager.RestartGame();
         }
     }
 
