@@ -213,32 +213,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundFxSource: {fileID: 1868516339}
   collideSounds:
-  - {fileID: 8300000, guid: b1aa6b6d4ef134357a9f7cb7ba62dbbb, type: 3}
-  - {fileID: 8300000, guid: 187900306a7114c7e8d9ebe05174949d, type: 3}
-  - {fileID: 8300000, guid: af881b6487c3e4340ac049ae52cf1053, type: 3}
-  - {fileID: 8300000, guid: 75b22a4209aa640b38fb45ed5d2d7533, type: 3}
-  - {fileID: 8300000, guid: 1b9d40798b9214dd69f4849ab12e3313, type: 3}
-  - {fileID: 8300000, guid: f556ee4ac6f474af3a9f7fc9bcbe1baa, type: 3}
-  - {fileID: 8300000, guid: 23c0b6f3a62f940e3b20e057638353d2, type: 3}
   - {fileID: 8300000, guid: c1dc3da4406f543649267e6a9d1cb30e, type: 3}
-  - {fileID: 8300000, guid: 57985399a9c7240978a0fd70c95c12e6, type: 3}
-  - {fileID: 8300000, guid: 01ee56068860343259c557780b13d39b, type: 3}
-  - {fileID: 8300000, guid: 363b1d4fcb97844e9b1367ca18d81567, type: 3}
-  - {fileID: 8300000, guid: 97126ed9c126f45f58299c5441b3ae69, type: 3}
-  - {fileID: 8300000, guid: cccad4fcc412f4f00925c97384719391, type: 3}
   - {fileID: 8300000, guid: 2a1c5eb9b29a64f2a979c1ce3cc7b2b1, type: 3}
-  - {fileID: 8300000, guid: d91cdc76c805e4ca8b504190d0b02f20, type: 3}
-  - {fileID: 8300000, guid: 9da65db85dd504dd6896ad96f6f8256d, type: 3}
-  - {fileID: 8300000, guid: c976699ca24bf45e5846a48a834d6729, type: 3}
-  - {fileID: 8300000, guid: 26e0b8b8a39384648aa673fc2ab3eb69, type: 3}
-  - {fileID: 8300000, guid: c3b2e0ad3f70749c48ccb73e12dd488f, type: 3}
-  - {fileID: 8300000, guid: 34a79bb1fc1d347418c042ae5c71bf49, type: 3}
-  - {fileID: 8300000, guid: 5485c5de597eb469e8750f24db571120, type: 3}
   - {fileID: 8300000, guid: bca0c2fbf80a14b0a9f5623290805448, type: 3}
-  - {fileID: 8300000, guid: 9da379c097f044e68bd0e97a59846483, type: 3}
-  - {fileID: 8300000, guid: c8036f495a6f3454a9e78feb60960b69, type: 3}
-  - {fileID: 8300000, guid: 599194b0f4eca4973bb043e2c0e6de89, type: 3}
-  - {fileID: 8300000, guid: 626bd898e97fd4bd0adefca661bf0d6a, type: 3}
 --- !u!1001 &191389570
 PrefabInstance:
   m_ObjectHideFlags: 0
