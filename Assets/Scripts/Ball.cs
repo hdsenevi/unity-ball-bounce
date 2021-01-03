@@ -39,6 +39,9 @@ public class Ball : MonoBehaviour
             return;
         }
 
+        // Play sound
+        _gameManager.soundManager.PlayRandomColliderSound();
+        
         if (ballGameColor.color == paddle.GetCurrentColor())
         {
             _gameManager.scoreManager.IncreaseScore();
@@ -46,13 +49,13 @@ public class Ball : MonoBehaviour
         {
             _gameManager.scoreManager.ResetScore();
             
-            // TODO / REFACTOR : Refactor this to a separate function later
-            Vector2 movingDirection = _rigidBody.velocity.normalized;
-            _rigidBody.velocity = Vector2.zero;
-            _rigidBody.AddForce(movingDirection * BallStats.initialForce);
-            
-            // TODO : maybe not the best thing to do atm
-            _gameManager.RestartGame();
+            // // TODO / REFACTOR : Refactor this to a separate function later
+            // Vector2 movingDirection = _rigidBody.velocity.normalized;
+            // _rigidBody.velocity = Vector2.zero;
+            // _rigidBody.AddForce(movingDirection * BallStats.initialForce);
+            //
+            // // TODO : maybe not the best thing to do atm
+            // _gameManager.RestartGame();
         }
     }
 
