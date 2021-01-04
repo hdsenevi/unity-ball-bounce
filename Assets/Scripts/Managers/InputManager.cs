@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
 #if UNITY_IOS || UNITY_ANDROID
         if (Input.touchCount > 0)
 #else
-        if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return))
+        if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Space))
 #endif
         {
             if (activePaddle.active != null)
